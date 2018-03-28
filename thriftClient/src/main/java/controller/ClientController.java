@@ -7,7 +7,7 @@ import thrift.ThriftClient;
 
 import java.util.List;
 
-public class ClientController implements ItemService.Iface{
+public class ClientController{
 
     private ThriftClient thriftClient;
 
@@ -16,28 +16,52 @@ public class ClientController implements ItemService.Iface{
         this.thriftClient.start();
     }
 
-    @Override
-    public Item addItem(Item item) throws TException {
-        return thriftClient.getService().addItem(item);
+    public Item addItem(Item item){
+        try {
+            return thriftClient.getService().addItem(item);
+        } catch (TException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
-    @Override
-    public Item getItem(String name) throws TException {
-        return thriftClient.getService().getItem(name);
+
+    public Item getItem(String name){
+        try {
+            return thriftClient.getService().getItem(name);
+        } catch (TException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
-    @Override
-    public Item updateItem(Item item) throws TException {
-        return thriftClient.getService().updateItem(item);
+
+    public Item updateItem(Item item){
+        try {
+            return thriftClient.getService().updateItem(item);
+        } catch (TException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
-    @Override
-    public Item deleteItem(String name) throws TException {
-        return thriftClient.getService().deleteItem(name);
+
+    public Item deleteItem(String name){
+        try {
+            return thriftClient.getService().deleteItem(name);
+        } catch (TException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
-    @Override
-    public List<Item> getItems() throws TException {
-        return thriftClient.getService().getItems();
+
+    public List<Item> getItems(){
+        try {
+            return thriftClient.getService().getItems();
+        } catch (TException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

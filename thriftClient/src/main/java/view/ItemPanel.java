@@ -28,8 +28,10 @@ public class ItemPanel {
         authorFirstName = item.author.firstName;
         authorSecondName = item.author.secondName;
         author = new JTextField("" + item.author.firstName + " " + item.author.secondName);
+        author.setPreferredSize(new Dimension(500, 30));
         chapterPanel = new ChapterPanel(item);
         yearOfPublication = new JTextField("" + item.yearOfPublication);
+        yearOfPublication.setPreferredSize(new Dimension(500, 30));
         itemPanel.setLayout(new BorderLayout());
 
         JPanel authorPanel = new JPanel();
