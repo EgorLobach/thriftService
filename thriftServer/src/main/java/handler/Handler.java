@@ -44,6 +44,7 @@ public class Handler implements ItemService.Iface{
         for(Item i: items)
             if(i.getName().equals(Item.getName())){
                 items.set(items.indexOf(i), Item);
+                System.out.println(Item.name);
                 return Item;
             }
          return null;
