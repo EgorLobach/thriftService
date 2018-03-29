@@ -6,18 +6,14 @@ import aipos.model.Item;
 import controller.ClientController;
 
 import javax.swing.*;
-
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static view.MainFrame.MAIN_FONT;
-
-class AddItemDialog extends Dialog{
-
-
-    AddItemDialog(ClientController clientController, String string) {
+public class AddChapterDialog extends Dialog {
+    private ItemPanel itemPanel;
+    AddChapterDialog(ClientController clientController, String string, ItemPanel itemPanel) {
         super(clientController, string);
+        this.itemPanel = itemPanel;
         dialog.pack();
         dialog.setVisible(true);
     }
@@ -29,10 +25,7 @@ class AddItemDialog extends Dialog{
                     "Error", JOptionPane.ERROR_MESSAGE);
         } else {
             String str = name.getText();
-            List<Chapter> chapters = new ArrayList<>();
-            chapters.add(new Chapter("new chapter", ""));
-            Item item = new Item(str, 2018, new Author("", ""), chapters);
-            clientController.addItem(item);
+            itemPanel.addChapter(str);
             dialog.dispose();
         }
     }

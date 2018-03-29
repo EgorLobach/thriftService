@@ -25,6 +25,8 @@ public class ItemPanel {
     private JTextField yearOfPublication;
     private MainFrame mainFrame;
 
+    private JTabbedPane tabbedPane;
+
     private List<ChapterPanel> chapterPanels;
 
     ItemPanel(Item item, ClientController clientController, MainFrame mainFrame){
@@ -33,7 +35,7 @@ public class ItemPanel {
         itemPanel = new JPanel();
         name = item.name;
         chapterPanels = new ArrayList<>();
-        JTabbedPane tabbedPane = new JTabbedPane();
+        tabbedPane = new JTabbedPane();
         tabbedPane.setFont(MAIN_FONT);
 
         authorFirstName = new JTextField(item.author.firstName);
@@ -46,7 +48,7 @@ public class ItemPanel {
         itemPanel.setLayout(new BorderLayout());
 
         for(Chapter chapter : item.chapters){
-            chapterPanels.add(new ChapterPanel(chapter));
+            chapterPanels.add(new ChapterPanel(chapter, this));
             tabbedPane.addTab(chapterPanels.get(chapterPanels.size()-1).getName(),chapterPanels.get(chapterPanels.size() - 1).getPanel());
         }
 
@@ -71,7 +73,7 @@ public class ItemPanel {
         buttonPanel.add(deleteItemButton);
 
         JButton addChapterButton = new JButton("Добавить главу");
-        addChapterButton.addActionListener(e -> addChapter());
+        addChapterButton.addActionListener(e -> {new AddChapterDialog(clientController, "Добавить главу", this);});
         buttonPanel.add(addChapterButton);
 
         itemPanel.add(buttonPanel, BorderLayout.SOUTH);
@@ -79,8 +81,14 @@ public class ItemPanel {
         setFont();
     }
 
-    private void addChapter() {
-
+    void addChapter(String str) {
+        chapterPanels.add(new ChapterPanel(new Chapter(str, ""), this));
+        tabbedPane.add(chapterPanels.get(chapterPanels.size()-1).getName(), chapterPanels.get(chapterPanels.size()-1).getPanel());
+    }
+    void deleteChapter(ChapterPanel chapterPanel){
+        int i = chapterPanels.indexOf(chapterPanel);
+        chapterPanels.remove(i);
+        tabbedPane.remove(i);
     }
 
     private void deleteItem() {
@@ -121,5 +129,17 @@ public class ItemPanel {
         for (ChapterPanel chapterPanel : chapterPanels)
             chapters.add(chapterPanel.getChapter());
         return chapters;
+    }
+
+    public ClientController getClientController() {
+        return clientController;
+    }
+
+    public JTabbedPane getTabbedPane() {
+        return tabbedPane;
+    }
+
+    public List<ChapterPanel> getChapterPanels() {
+        return chapterPanels;
     }
 }

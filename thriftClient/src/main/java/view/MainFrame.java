@@ -61,7 +61,7 @@ public class MainFrame {
     }
 
     private void addItem() {
-        new AddItemDialog(clientController);
+        new AddItemDialog(clientController, "Добавить");
         update();
     }
 
