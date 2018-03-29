@@ -4,23 +4,20 @@ import aipos.model.Author;
 import aipos.model.Item;
 import aipos.model.Chapter;
 import aipos.service.ItemService;
+import controller.XMLParser;
 import org.apache.thrift.TException;
+import org.xml.sax.SAXException;
 
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Handler implements ItemService.Iface{
     private List<Item> items = new ArrayList<>();
 
-    public Handler(){
-        List<Chapter> chapters = new ArrayList<>();
-        chapters.add(new Chapter("Введение", "Pascal (Паскаль) - язык программирования общего назначения."));
-        chapters.add(new Chapter("Часть 1", "Текст программы состоит из трех составных частей. Это заголовок, описания, операторы."));
-        items.add(new Item("Pascal beginer", 2010, new Author("Egor", "Lobach"), chapters));
-
-        chapters = new ArrayList<>();
-        chapters.add(new Chapter("Введение", "Паска́ль (англ. Pascal) — один из наиболее известных языков программирования[5], используется для обучения программированию в старших классах и на первых курсах вузов, является базой для ряда других языков."));
-        items.add(new Item("Pascal for all", 2014, new Author("Sasha", "Lobach"), chapters));
+    public Handler() throws IOException, SAXException, ParserConfigurationException {
+        items = new XMLParser().read();
     }
 
     @Override
