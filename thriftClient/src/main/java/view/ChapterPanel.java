@@ -1,7 +1,6 @@
 package view;
 
 import aipos.model.Chapter;
-import aipos.model.Item;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,32 +10,28 @@ import java.util.List;
 import static view.MainFrame.MAIN_FONT;
 
 public class ChapterPanel {
-    private JTabbedPane tabbedPane;
+    private JPanel chapterPanel;
+    private String name;
+    private JTextArea text;
 
-    private List<JTextField> name = new ArrayList<>();
-    private List<JTextArea> text = new ArrayList<>();
-
-    public List<Chapter> getChapters() {
-        List<Chapter> chapters = new ArrayList<>();
-        for(JTextField str: name)
-            chapters.add(new Chapter(str.getText(), text.get(name.indexOf(str)).getText()));
-        return chapters;
+    ChapterPanel(Chapter chapter) {
+        chapterPanel = new JPanel();
+        chapterPanel.setLayout(new BorderLayout());
+        name = chapter.name;
+        text = new JTextArea(chapter.text);
+        text.setFont(MAIN_FONT);
+        chapterPanel.add(text, BorderLayout.CENTER);
     }
 
-    ChapterPanel(Item item) {
-        tabbedPane = new JTabbedPane();
-        tabbedPane.setFont(MAIN_FONT);
-        for (Chapter chapter : item.chapters){
-            name.add(new JTextField(chapter.name));
-            text.add(new JTextArea(chapter.text));
-            if (!name.isEmpty() && !text.isEmpty()){
-                tabbedPane.addTab((name.get(name.size()-1).getText()), text.get(text.size()-1));
-                text.get(text.size()-1).setFont(MAIN_FONT);
-            }
-        }
+    Chapter getChapter(){
+        return new Chapter(name, text.getText());
     }
 
-    public JTabbedPane getTabbedPane() {
-        return tabbedPane;
+    public String getName() {
+        return name;
+    }
+
+    public Component getPanel() {
+        return chapterPanel;
     }
 }

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Handler implements ItemService.Iface{
-    List<Item> items = new ArrayList<>();
+    private List<Item> items = new ArrayList<>();
 
     public Handler(){
         List<Chapter> chapters = new ArrayList<>();
@@ -44,7 +44,6 @@ public class Handler implements ItemService.Iface{
         for(Item i: items)
             if(i.getName().equals(Item.getName())){
                 items.set(items.indexOf(i), Item);
-                System.out.println(Item.name);
                 return Item;
             }
          return null;

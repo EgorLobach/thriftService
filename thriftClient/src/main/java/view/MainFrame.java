@@ -1,7 +1,5 @@
 package view;
 
-import aipos.model.Author;
-import aipos.model.Chapter;
 import aipos.model.Item;
 import controller.ClientController;
 import org.apache.thrift.TException;
@@ -37,55 +35,34 @@ public class MainFrame {
     private void init() throws TException {
         update();
         mainFrame.add(tabbedPane, BorderLayout.CENTER);
-
         JPanel buttonPanel = new JPanel();
-        JButton updateButton = new JButton("Обновить статью");
-        updateButton.addActionListener(e -> updateItem());
+
+        JButton updateButton = new JButton("Обновить справочник");
+        updateButton.addActionListener(e -> update());
         buttonPanel.add(updateButton);
 
         JButton addItemButton = new JButton("Добавить статью");
-        addItemButton.addActionListener(e -> {addItem();});
+        addItemButton.addActionListener(e -> addItem());
         buttonPanel.add(addItemButton);
 
-        JButton deleteItemButton = new JButton("Удалить статью");
-        deleteItemButton.addActionListener(e -> {deleteItem();});
-        buttonPanel.add(deleteItemButton);
         mainFrame.add(buttonPanel, BorderLayout.SOUTH);
         mainFrame.setVisible(true);
     }
 
 
-    private void update() {
+    void update() {
         tabbedPane.removeAll();
-        for(Item item : clientController.getItems()){
-            itemPanels.add(new ItemPanel(item));
-            tabbedPane.add(itemPanels.get(itemPanels.size()-1).getName(),itemPanels.get(itemPanels.size()-1).getPanel());
+        for (Item item : clientController.getItems()) {
+            itemPanels.add(new ItemPanel(item, clientController, this));
+            tabbedPane.add(itemPanels.get(itemPanels.size() - 1).getName(), itemPanels.get(itemPanels.size() - 1).getPanel());
         }
         mainFrame.validate();
         mainFrame.repaint();
     }
 
-    private void updateItem(){
-        ItemPanel itemPanel = itemPanels.get(tabbedPane.getSelectedIndex());
-        Item item = new Item(itemPanel.getName(),
-                Integer.parseInt(itemPanel.getYearOfPublication().getText()),
-                itemPanel.getAuthor(), itemPanel.getChapterPanel().getChapters());
-        clientController.updateItem(item);
-    }
-
-    private void addItem(){
-        List<Chapter> chapters = new ArrayList<>();
-        chapters.add(new Chapter("FirstChapter", ""));
-        Item item = new Item("New", 0, new Author("",""), chapters);
-        clientController.addItem(item);
+    private void addItem() {
+        new AddItemDialog(clientController);
         update();
-
     }
 
-    private void deleteItem() {
-        ItemPanel itemPanel = itemPanels.get(tabbedPane.getSelectedIndex());
-        clientController.deleteItem(itemPanel.getName());
-        update();
-
-    }
 }

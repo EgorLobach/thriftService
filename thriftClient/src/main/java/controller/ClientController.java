@@ -1,7 +1,6 @@
 package controller;
 
 import aipos.model.Item;
-import aipos.service.ItemService;
 import org.apache.thrift.TException;
 import thrift.ThriftClient;
 
@@ -36,23 +35,21 @@ public class ClientController{
     }
 
 
-    public Item updateItem(Item item){
+    public void updateItem(Item item){
         try {
-            return thriftClient.getService().updateItem(item);
+            thriftClient.getService().updateItem(item);
         } catch (TException e) {
             e.printStackTrace();
         }
-        return null;
     }
 
 
-    public Item deleteItem(String name){
+    public void deleteItem(String name){
         try {
-            return thriftClient.getService().deleteItem(name);
+            thriftClient.getService().deleteItem(name);
         } catch (TException e) {
             e.printStackTrace();
         }
-        return null;
     }
 
 
