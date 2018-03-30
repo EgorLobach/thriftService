@@ -1,7 +1,7 @@
 package view;
 
 import aipos.model.Item;
-import controller.ClientController;
+import xml.ClientController;
 import org.apache.thrift.TException;
 
 import javax.swing.*;

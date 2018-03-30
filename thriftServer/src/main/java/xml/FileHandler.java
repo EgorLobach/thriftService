@@ -1,4 +1,4 @@
-package controller;
+package xml;
 
 import aipos.model.Author;
 import aipos.model.Chapter;

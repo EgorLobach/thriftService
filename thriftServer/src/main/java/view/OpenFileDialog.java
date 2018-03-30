@@ -1,6 +1,6 @@
 package view;
 
-import controller.XMLParser;
+import xml.XMLParser;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;

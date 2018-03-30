@@ -1,6 +1,6 @@
 package view;
 
-import controller.ClientController;
+import xml.ClientController;
 
 import javax.swing.*;
 import java.awt.*;

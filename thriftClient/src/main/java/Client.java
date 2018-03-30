@@ -1,4 +1,4 @@
-import controller.ClientController;
+import xml.ClientController;
 import org.apache.thrift.TException;
 import thrift.ThriftClient;
 import view.MainFrame;

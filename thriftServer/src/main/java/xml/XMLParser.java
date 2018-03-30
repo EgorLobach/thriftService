@@ -1,4 +1,4 @@
-package controller;
+package xml;
 
 import aipos.model.Chapter;
 import aipos.model.Item;

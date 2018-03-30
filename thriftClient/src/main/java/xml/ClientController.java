@@ -1,4 +1,4 @@
-package controller;
+package xml;
 
 import aipos.model.Item;
 import org.apache.thrift.TException;

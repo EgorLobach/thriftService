@@ -1,13 +1,8 @@
 package view;
 
-import aipos.model.Author;
-import aipos.model.Chapter;
-import aipos.model.Item;
-import controller.ClientController;
+import xml.ClientController;
 
 import javax.swing.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class AddChapterDialog extends Dialog {
     private ItemPanel itemPanel;

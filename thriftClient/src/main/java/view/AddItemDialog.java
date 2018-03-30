@@ -3,15 +3,12 @@ package view;
 import aipos.model.Author;
 import aipos.model.Chapter;
 import aipos.model.Item;
-import controller.ClientController;
+import xml.ClientController;
 
 import javax.swing.*;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
-
-import static view.MainFrame.MAIN_FONT;
 
 class AddItemDialog extends Dialog{
 
