@@ -10,7 +10,7 @@ import org.xml.sax.helpers.DefaultHandler;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyHandler extends DefaultHandler {
+public class FileHandler extends DefaultHandler {
     static final String DIRECTORY = "directory";
     static final String ITEM = "item";
     static final String ITEM_NAME = "itemName";
@@ -23,7 +23,7 @@ public class MyHandler extends DefaultHandler {
     static final String CHAPTER_NAME = "chapterName";
     static final String TEXT = "text";
 
-    List<Item> items;
+    private List<Item> items;
 
     private Item item;
     private Author author;
