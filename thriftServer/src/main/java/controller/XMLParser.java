@@ -4,6 +4,7 @@ import aipos.model.Chapter;
 import aipos.model.Item;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
+import view.OpenFileDialog;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
@@ -22,8 +23,11 @@ public class XMLParser {
     private String currentDirectory;
 
     public XMLParser(){
-        currentDirectory = System.getProperty("user.dir");
-        currentDirectory += "\\thriftServer\\temp.xml";
+        new OpenFileDialog(this);
+    }
+
+    public void setCurrentDirectory(String currentDirectory) {
+        this.currentDirectory = currentDirectory;
     }
 
     public List<Item> read(){
