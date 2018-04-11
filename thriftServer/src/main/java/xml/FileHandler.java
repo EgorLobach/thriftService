@@ -10,6 +10,7 @@ import org.xml.sax.helpers.DefaultHandler;
 import java.util.ArrayList;
 import java.util.List;
 
+//JAXB
 public class FileHandler extends DefaultHandler {
     static final String DIRECTORY = "directory";
     static final String ITEM = "item";

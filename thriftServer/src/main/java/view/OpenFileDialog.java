@@ -8,7 +8,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class OpenFileDialog {
 
     public OpenFileDialog(XMLParser parser){
-        String currentDirectory = System.getProperty("user.dir");
+        String currentDirectory = "D:\\work\\java\\AIPOS\\resources";
         JFileChooser fileChooser = new JFileChooser(currentDirectory);
         fileChooser.setMultiSelectionEnabled(false);
         FileNameExtensionFilter filter = new FileNameExtensionFilter(
